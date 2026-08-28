@@ -49,7 +49,7 @@ POST_TEMPLATE = """<!doctype html>
   <div class="wrap">
     <h1 class="site-title">渠成</h1>
     <p class="site-sub">调查 · 模仿 · 超越 · 总结 · 成长</p>
-    <div class="site-nav"><a href="../">首页</a></div>
+    <div class="site-nav"><a href="../">首页</a><a href="../manifesto.html">创作理念</a></div>
   </div>
 </header>
 <main class="wrap article">
@@ -98,6 +98,7 @@ INDEX_TEMPLATE = """<!doctype html>
   <div class="wrap">
     <h1 class="site-title">渠成</h1>
     <p class="site-sub">调查 · 模仿 · 超越 · 总结 · 成长</p>
+    <div class="site-nav"><a href="manifesto.html">创作理念</a><a href="./">首页</a></div>
   </div>
 </header>
 <main class="wrap post-list">
