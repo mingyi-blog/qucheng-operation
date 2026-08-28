@@ -125,12 +125,29 @@ a:hover { color: var(--accent-soft); text-decoration: underline; }
   margin: 0 6px 6px 0;
 }
 
-.back-home {
-  display: inline-block;
-  margin: 40px 0 10px;
-  font-size: 14px;
-  color: var(--ink-faint);
+.article-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 15px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
 }
+.article-body th, .article-body td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+.article-body th {
+  background: #f4efe4;
+  font-weight: 700;
+  color: var(--ink);
+  font-size: 13.5px;
+}
+.article-body tr:last-child td { border-bottom: none; }
+.article-body td { color: var(--ink-soft); }
 
 /* ---------- 页脚 ---------- */
 .site-footer {
