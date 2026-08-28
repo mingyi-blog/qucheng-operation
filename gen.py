@@ -12,10 +12,16 @@ SITE = {
     "sub": "调查 → 模仿 → 超越 → 总结 → 成长（认知差即商机）",
     "author": "渠成（旺存经营体）",
     "url": "https://mingyi-blog.github.io/qucheng-operation",
+    "description": "渠成被动收益资产的生产与运营复盘：市场监测、资产方向裁决、认知差飞轮。调查→模仿→超越→总结→成长。",
     "footer": "渠成 · 被动收益运营笔记　|　资产生产以实事求是、真正帮人为首要原则",
     # 渠成自有媒体矩阵（暂不混入任何理疗账号）；未来每线独立接微博等，互不相通
     "social": [],
     "wechat": "",
+    "nav": [
+        {"label": "首页", "href": "./"},
+        {"label": "创作理念", "href": "manifesto.html"},
+        {"label": "关于渠成", "href": "about.html"},
+    ],
 }
 
 _DATA = os.path.join(BASE, "posts_data.json")
@@ -49,7 +55,7 @@ POST_TEMPLATE = """<!doctype html>
   <div class="wrap">
     <h1 class="site-title">渠成</h1>
     <p class="site-sub">调查 · 模仿 · 超越 · 总结 · 成长</p>
-    <div class="site-nav"><a href="../">首页</a><a href="../manifesto.html">创作理念</a></div>
+    <div class="site-nav">{nav_links}</div>
   </div>
 </header>
 <main class="wrap article">
@@ -98,7 +104,7 @@ INDEX_TEMPLATE = """<!doctype html>
   <div class="wrap">
     <h1 class="site-title">渠成</h1>
     <p class="site-sub">调查 · 模仿 · 超越 · 总结 · 成长</p>
-    <div class="site-nav"><a href="manifesto.html">创作理念</a><a href="./">首页</a></div>
+    <div class="site-nav">{nav_links}</div>
   </div>
 </header>
 <main class="wrap post-list">
@@ -117,6 +123,9 @@ def tags_html(tags):
 
 def gen():
     os.makedirs(os.path.join(BASE, "posts"), exist_ok=True)
+
+    # 导航链接生成
+    nav_links = "".join('<a href="{href}">{label}</a>'.format(**n) for n in SITE["nav"])
 
     # 渠成独立关注区块（无理疗账号，仅作品牌声明）
     follow_block = (
@@ -172,6 +181,7 @@ def gen():
             faq_html=faq_html,
             follow_block=follow_block,
             footer=SITE["footer"],
+            nav_links=nav_links,
         )
         with open(os.path.join(BASE, "posts", p["slug"] + ".html"), "w", encoding="utf-8") as f:
             f.write(html)
@@ -194,12 +204,16 @@ def gen():
         )
     index_html = INDEX_TEMPLATE.format(
         site_url=SITE["url"],
-        cards=cards, follow_block=follow_block, footer=SITE["footer"]
+        cards=cards, follow_block=follow_block, footer=SITE["footer"],
+        nav_links=nav_links,
     )
     with open(os.path.join(BASE, "index.html"), "w", encoding="utf-8") as f:
         f.write(index_html)
 
     urls = [SITE["url"] + "/"]
+    # 独立页面（about、manifesto）也入 sitemap
+    for page in ["about.html", "manifesto.html"]:
+        urls.append(SITE["url"] + "/" + page)
     for p in posts:
         urls.append(SITE["url"] + "/posts/" + p["slug"] + ".html")
     xml = '<?xml version="1.0" encoding="UTF-8"?>\n'
