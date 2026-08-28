@@ -1,0 +1,272 @@
+:root {
+  --bg: #faf7f0;
+  --bg-card: #fffdf8;
+  --ink: #2e2a26;
+  --ink-soft: #6b635a;
+  --ink-faint: #9a9186;
+  --line: #e7e0d2;
+  --accent: #8a6d3b;
+  --accent-soft: #b89b6e;
+  --max: 720px;
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+  font-size: 18px;
+  line-height: 1.95;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { color: var(--accent-soft); text-decoration: underline; }
+
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 22px; }
+
+/* ---------- 顶部 ---------- */
+.site-header {
+  text-align: center;
+  padding: 64px 22px 40px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 8px;
+}
+.site-title {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin: 0 0 10px;
+}
+.site-sub {
+  font-size: 15px;
+  color: var(--ink-soft);
+  letter-spacing: 1px;
+  margin: 0;
+}
+.site-nav { margin-top: 18px; font-size: 14px; }
+.site-nav a { color: var(--ink-faint); margin: 0 10px; }
+
+/* ---------- 文章列表 ---------- */
+.post-list { padding: 40px 0 20px; }
+.post-card {
+  display: block;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 26px 28px;
+  margin-bottom: 22px;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.post-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(120,100,60,.10);
+  text-decoration: none;
+}
+.post-card h2 {
+  font-size: 21px;
+  margin: 0 0 10px;
+  color: var(--ink);
+  line-height: 1.5;
+}
+.post-card p { margin: 0 0 12px; color: var(--ink-soft); font-size: 15.5px; }
+.post-meta { font-size: 13px; color: var(--ink-faint); }
+
+/* ---------- 文章页 ---------- */
+.article { padding: 56px 0 40px; }
+.article-header { text-align: center; margin-bottom: 38px; }
+.article-header h1 {
+  font-size: 27px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin: 0 0 14px;
+  line-height: 1.5;
+}
+.article-meta {
+  font-size: 13.5px;
+  color: var(--ink-faint);
+  letter-spacing: .5px;
+}
+.article-body { font-size: 18px; }
+.article-body h2 {
+  font-size: 21px;
+  margin: 38px 0 14px;
+  padding-left: 12px;
+  border-left: 3px solid var(--accent-soft);
+}
+.article-body p { margin: 16px 0; }
+.article-body blockquote {
+  margin: 22px 0;
+  padding: 14px 22px;
+  background: #f4efe4;
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  color: var(--ink-soft);
+  font-style: normal;
+}
+.article-body ul, .article-body ol { padding-left: 24px; margin: 16px 0; }
+.article-body li { margin: 8px 0; }
+.article-body hr { border: none; border-top: 1px solid var(--line); margin: 36px 0; }
+
+.tags { margin-top: 18px; }
+.tag {
+  display: inline-block;
+  font-size: 12.5px;
+  color: var(--accent);
+  background: #f3ecdd;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 3px 12px;
+  margin: 0 6px 6px 0;
+}
+
+.back-home {
+  display: inline-block;
+  margin: 40px 0 10px;
+  font-size: 14px;
+  color: var(--ink-faint);
+}
+
+/* ---------- 页脚 ---------- */
+.site-footer {
+  text-align: center;
+  padding: 40px 22px 56px;
+  border-top: 1px solid var(--line);
+  margin-top: 30px;
+  font-size: 13px;
+  color: var(--ink-faint);
+  letter-spacing: .5px;
+}
+
+/* ---------- 分享栏 ---------- */
+.share-bar {
+  margin: 26px 0 10px;
+  padding: 14px 16px;
+  background: #f4efe4;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.share-tip { font-size: 14px; color: var(--ink-soft); margin-right: 6px; }
+.share-btn {
+  font-family: inherit;
+  font-size: 13.5px;
+  color: var(--accent);
+  background: var(--bg-card);
+  border: 1px solid var(--accent-soft);
+  border-radius: 18px;
+  padding: 5px 14px;
+  margin: 4px 4px 0 0;
+  cursor: pointer;
+  transition: background .15s ease, color .15s ease;
+}
+.share-btn:hover { background: var(--accent); color: #fff; }
+.wx-qr {
+  margin: 12px 0 4px;
+  padding: 14px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  text-align: center;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+.wx-qr img { display: block; margin: 8px auto 0; border-radius: 6px; }
+
+/* ---------- 关注引导 / 私域 CTA ---------- */
+.follow-box, .cta-box {
+  margin: 46px 0 0;
+  padding: 26px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  text-align: center;
+}
+.box-title {
+  font-size: 18px;
+  color: var(--ink);
+  margin: 0 0 16px;
+  letter-spacing: 1px;
+}
+.social-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+.social-link {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 92px;
+  padding: 12px 14px;
+  background: #f4efe4;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--accent);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.social-link span {
+  margin-top: 4px;
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--ink-faint);
+}
+.social-link:hover { background: var(--accent); color: #fff; text-decoration: none; }
+.social-link:hover span { color: rgba(255,255,255,.8); }
+.cta-text {
+  font-size: 16px;
+  color: var(--ink);
+  margin: 0 0 10px;
+}
+.cta-note {
+  font-size: 13px;
+  color: var(--ink-faint);
+  margin: 0;
+}
+
+/* ---------- 响应式 ---------- */
+@media (max-width: 600px) {
+  body { font-size: 16.5px; }
+  .site-header { padding: 44px 18px 30px; }
+  .site-title { font-size: 25px; }
+  .article-header h1 { font-size: 23px; }
+  .post-card { padding: 20px 20px; }
+  .article-body { font-size: 16.5px; }
+  .social-link { min-width: 76px; padding: 10px; }
+}
+
+/* ---------- 相关阅读 / 大家还问 ---------- */
+.rel-box, .faq-box {
+  margin: 46px 0 0;
+  padding: 24px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.rel-list { display: flex; flex-direction: column; gap: 10px; }
+.rel-link {
+  display: block;
+  padding: 12px 16px;
+  background: #f4efe4;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--ink);
+  font-size: 15.5px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.rel-link:hover { background: var(--accent); color: #fff; text-decoration: none; }
+.faq-item {
+  padding: 12px 0;
+  border-bottom: 1px dashed var(--line);
+}
+.faq-item:last-child { border-bottom: none; }
+.faq-q { margin: 0 0 6px; font-size: 16px; font-weight: 700; color: var(--ink); }
+.faq-a { margin: 0; font-size: 15px; color: var(--ink-soft); }
