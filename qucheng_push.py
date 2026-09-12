@@ -14,9 +14,36 @@ BASE = r"E:\workbuddy\2026-08-28-15-09-37\qucheng-blog"
 API = f"https://api.github.com/repos/{REPO}/contents"
 
 
+def read_env(name):
+    """用户级环境变量：进程环境优先 → 注册表 HKCU\\Environment 兜底。
+    兜底原因：环境变量写入后仅新进程继承，长期运行的宿主进程读不到，
+    直接从注册表补读可消除"必须重启"的时序依赖。"""
+    v = os.environ.get(name, "").strip()
+    if v:
+        return v
+    try:
+        import winreg
+        with winreg.OpenKey(winreg.HKEY_CURRENT_USER, "Environment") as k:
+            v, _ = winreg.QueryValueEx(k, name)
+            return (v or "").strip()
+    except Exception:
+        return ""
+
+
 def load_token():
+    """凭据读取（安全优先级）：
+    1) 用户级环境变量 GITHUB_TOKEN（首选，不落明文；含注册表兜底）
+    2) 明文文件 ~/.workbuddy/github_token.txt（兜底）
+    与手到心安 push_blog.py 逻辑一致，互不引用。"""
+    tok = read_env("GITHUB_TOKEN")
+    if tok:
+        return tok
+    if not os.path.isfile(TOKEN_FILE):
+        sys.exit(f"--- 未找到凭据：环境变量 GITHUB_TOKEN 未设置，且凭据文件不存在：{TOKEN_FILE}")
     with open(TOKEN_FILE, "r", encoding="utf-8") as f:
         tok = f.read().strip()
+    if not tok:
+        sys.exit("--- 凭据文件为空，请写入有效的 GitHub PAT。")
     return tok
 
 
